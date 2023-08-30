@@ -139,6 +139,7 @@ async function createReservation(req, res) {
     res.status(200).json({ reservation: dataReservation });
   } catch (error) {
     console.log(error);
+    res.status(401).json({ message: error.message });
   }
 }
 
