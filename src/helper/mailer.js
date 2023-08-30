@@ -5,7 +5,7 @@ const { NODEMAILER_EMAIL, NODEMAILER_PASSWORD } = process.env;
 
 const transporter = nodemailer.createTransport({
   host: "smtp-mail.outlook.com",
-  port: 456,
+  port: 587,
   secure: false, // upgrade later with STARTTLS
   auth: {
     user: NODEMAILER_EMAIL,
