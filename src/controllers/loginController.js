@@ -13,7 +13,13 @@ async function login(req, res) {
   }
 
   try {
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({
+      where: {
+        email: {
+          [Op.iLike]: email,
+        },
+      },
+    });
 
     if (!user) {
       return res.status(401).json({ message: "Usuario no encontrado" });
