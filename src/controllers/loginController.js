@@ -5,6 +5,7 @@ const {
   generateRefreshToken,
 } = require("../auth/generateToken");
 const Token = require("../models/Token");
+const { Op } = require("sequelize");
 
 async function login(req, res) {
   const { email, password } = req.body;

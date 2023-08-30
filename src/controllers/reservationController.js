@@ -101,7 +101,7 @@ async function createReservation(req, res) {
       }
     );
 
-    const sendResult = await transporter.sendMail({
+    await transporter.sendMail({
       from: `TravelApp ${NODEMAILER_EMAIL}`,
       to: user.email,
       subject: "Has creado la reserva exitosamente",
@@ -139,7 +139,7 @@ async function createReservation(req, res) {
     res.status(200).json({ reservation: dataReservation });
   } catch (error) {
     console.log(error);
-    res.status(401).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 }
 
