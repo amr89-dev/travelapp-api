@@ -5,7 +5,18 @@ const routes = require("./routes");
 const server = express();
 
 server.use(express.json());
-server.use(cors());
+const ACCEPTED_ORIGINS = ["http://localhost:3001", "*"];
+const corsOptions = {
+  origin: (origin, callback) => {
+    console.log(origin);
+    if (ACCEPTED_ORIGINS.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+server.use(cors(corsOptions));
 
 server.use("/", routes);
 
